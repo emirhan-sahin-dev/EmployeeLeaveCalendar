@@ -1,0 +1,86 @@
+﻿@model CompanyCalendar.Application.DTOs.Positions.PositionDetailDto
+
+@{
+    ViewData["Title"] = "Pozisyon Detayı";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">
+            @Model.Name
+        </h2>
+
+        <p class="text-muted mb-0">
+            Pozisyon bilgileri
+        </p>
+    </div>
+
+    <div>
+        <a asp-action="Index"
+           class="btn btn-light">
+            Listeye Dön
+        </a>
+
+        <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-primary">
+            Düzenle
+        </a>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+
+        <dl class="row mb-0">
+
+            <dt class="col-sm-4">
+                Pozisyon
+            </dt>
+            <dd class="col-sm-8">
+                @Model.Name
+            </dd>
+
+            <dt class="col-sm-4">
+                Departman
+            </dt>
+            <dd class="col-sm-8">
+                @Model.DepartmentName
+            </dd>
+
+            <dt class="col-sm-4">
+                Kod
+            </dt>
+            <dd class="col-sm-8">
+                @(Model.Code ?? "-")
+            </dd>
+
+            <dt class="col-sm-4">
+                Açıklama
+            </dt>
+            <dd class="col-sm-8">
+                @(Model.Description ?? "-")
+            </dd>
+
+            <dt class="col-sm-4">
+                Durum
+            </dt>
+            <dd class="col-sm-8">
+                @if (Model.IsActive)
+                {
+                    <span class="badge text-bg-success">
+                        Aktif
+                    </span>
+                }
+                else
+                {
+                    <span class="badge text-bg-secondary">
+                        Pasif
+                    </span>
+                }
+            </dd>
+
+        </dl>
+
+    </div>
+</div>

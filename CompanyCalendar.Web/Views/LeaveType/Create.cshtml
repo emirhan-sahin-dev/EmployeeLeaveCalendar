@@ -1,0 +1,105 @@
+﻿@model CompanyCalendar.Web.ViewModels.LeaveTypes.LeaveTypeViewModel
+
+@{
+    ViewData["Title"] = "Yeni İzin Türü";
+}
+
+<div class="page-header">
+
+    <h1 class="page-title">
+        Yeni İzin Türü
+    </h1>
+
+    <p class="page-description">
+        Takvimde kullanılacak yeni izin türünü tanımlayın.
+    </p>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-7">
+
+        <div class="card">
+
+            <div class="card-body p-4">
+
+                <form asp-action="Create"
+                      method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger">
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label asp-for="Name"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="Name"
+                               class="form-control"
+                               placeholder="Örn. Yıllık İzin" />
+
+                        <span asp-validation-for="Name"
+                              class="text-danger small">
+                        </span>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label asp-for="Color"
+                               class="form-label d-block">
+                        </label>
+
+                        <div class="color-picker-wrapper">
+
+                            <input asp-for="Color"
+                                   type="color"
+                                   class="form-control form-control-color" />
+
+                            <span class="text-muted small">
+                                Bu renk izin takviminde kullanılacaktır.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-check form-switch">
+
+                        <input asp-for="IsActive"
+                               class="form-check-input" />
+
+                        <label asp-for="IsActive"
+                               class="form-check-label">
+                        </label>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <a asp-action="Index"
+                           class="btn btn-light">
+                            Vazgeç
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-dark">
+                            Kaydet
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

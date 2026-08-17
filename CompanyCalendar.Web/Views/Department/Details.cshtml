@@ -1,0 +1,113 @@
+﻿@model CompanyCalendar.Application.DTOs.Departments.DepartmentDetailDto
+
+@{
+    ViewData["Title"] = "Departman Detayı";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">@Model.Name</h2>
+
+        <p class="text-muted mb-0">
+            Tesan İletişim departman bilgileri
+        </p>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a asp-action="Index"
+           class="btn btn-light">
+            Listeye Dön
+        </a>
+
+        <a asp-action="Edit"
+           asp-route-id="@Model.Id"
+           class="btn btn-primary">
+            Düzenle
+        </a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-4">
+                    Departman Bilgileri
+                </h5>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Departman Adı</dt>
+                    <dd class="col-sm-8">@Model.Name</dd>
+
+                    <dt class="col-sm-4">Departman Kodu</dt>
+                    <dd class="col-sm-8">
+                        @(Model.Code ?? "-")
+                    </dd>
+
+                    <dt class="col-sm-4">Açıklama</dt>
+                    <dd class="col-sm-8">
+                        @(Model.Description ?? "-")
+                    </dd>
+
+                    <dt class="col-sm-4">Durum</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.IsActive)
+                        {
+                            <span class="badge text-bg-success">
+                                Aktif
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge text-bg-secondary">
+                                Pasif
+                            </span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <div class="text-muted mb-2">
+                    Toplam Pozisyon
+                </div>
+
+                <div class="display-5 fw-bold">
+                    @Model.PositionCount
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h6 class="fw-bold">Kayıt Bilgileri</h6>
+
+                <div class="small text-muted mt-3">
+                    Oluşturulma
+                </div>
+
+                <div>
+                    @Model.CreatedAt
+                    .ToLocalTime()
+                    .ToString("dd.MM.yyyy HH:mm")
+                </div>
+
+                <div class="small text-muted mt-3">
+                    Son Güncelleme
+                </div>
+
+                <div>
+                    @(Model.UpdatedAt.HasValue
+                                        ? Model.UpdatedAt.Value
+                                        .ToLocalTime()
+                                        .ToString("dd.MM.yyyy HH:mm")
+                                        : "-")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

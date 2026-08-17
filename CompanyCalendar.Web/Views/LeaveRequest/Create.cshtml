@@ -1,0 +1,156 @@
+﻿@model CompanyCalendar.Web.ViewModels.LeaveRequests.LeaveRequestViewModel
+
+@{
+    ViewData["Title"] = "Yeni İzin Talebi";
+}
+
+<div class="page-header">
+    <h1 class="page-title">
+        Yeni İzin Talebi
+    </h1>
+
+    <p class="page-description">
+        Çalışan için yeni izin kaydı oluşturun.
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-xl-8">
+
+        <div class="card">
+
+            <div class="card-header bg-white p-4 border-bottom">
+                <h5 class="mb-1 fw-semibold">
+                    İzin Bilgileri
+                </h5>
+
+                <span class="text-muted small">
+                    Talep kaydedildiğinde onay bekleyenler listesine düşer.
+                </span>
+            </div>
+
+            <div class="card-body p-4">
+
+                <form asp-action="Create"
+                      method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger">
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label asp-for="EmployeeId"
+                                   class="form-label">
+                            </label>
+
+                            <select asp-for="EmployeeId"
+                                    asp-items="Model.Employees"
+                                    class="form-select">
+
+                                <option value="">
+                                    Çalışan seçiniz
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="EmployeeId"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="LeaveTypeId"
+                                   class="form-label">
+                            </label>
+
+                            <select asp-for="LeaveTypeId"
+                                    asp-items="Model.LeaveTypes"
+                                    class="form-select">
+
+                                <option value="">
+                                    İzin türü seçiniz
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="LeaveTypeId"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="StartDate"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="StartDate"
+                                   class="form-control" />
+
+                            <span asp-validation-for="StartDate"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="EndDate"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="EndDate"
+                                   class="form-control" />
+
+                            <span asp-validation-for="EndDate"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="Description"
+                                   class="form-label">
+                            </label>
+
+                            <textarea asp-for="Description"
+                                      rows="4"
+                                      class="form-control"
+                                      placeholder="İsteğe bağlı açıklama">
+                            </textarea>
+
+                            <span asp-validation-for="Description"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <a asp-action="Index"
+                           class="btn btn-light">
+                            Vazgeç
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-dark">
+
+                            <i class="bi bi-check2 me-1"></i>
+
+                            Talebi Oluştur
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

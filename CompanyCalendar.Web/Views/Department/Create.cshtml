@@ -1,0 +1,142 @@
+﻿@model CompanyCalendar.Application.DTOs.Departments.CreateDepartmentDto
+
+@{
+    ViewData["Title"] = "Yeni Departman";
+}
+
+<div class="page-header">
+
+    <h1 class="page-title">
+        Yeni Departman
+    </h1>
+
+    <p class="page-description">
+        Tesan İletişim organizasyonuna yeni departman ekleyin.
+    </p>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-8">
+
+        <div class="card">
+
+            <div class="card-header bg-white p-4 border-bottom">
+
+                <h5 class="mb-1 fw-semibold">
+                    Departman Bilgileri
+                </h5>
+
+                <span class="text-muted small">
+                    Departmanın temel bilgilerini tanımlayın.
+                </span>
+
+            </div>
+
+            <div class="card-body p-4">
+
+                <form asp-action="Create"
+                      method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger">
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-8">
+
+                            <label asp-for="Name"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="Name"
+                                   class="form-control"
+                                   placeholder="Örn. İnsan Kaynakları" />
+
+                            <span asp-validation-for="Name"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <label asp-for="Code"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="Code"
+                                   class="form-control"
+                                   placeholder="Örn. IK" />
+
+                            <span asp-validation-for="Code"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+                        <div class="col-12">
+
+                            <label asp-for="Description"
+                                   class="form-label">
+                            </label>
+
+                            <textarea asp-for="Description"
+                                      class="form-control"
+                                      rows="4">
+                            </textarea>
+
+                            <span asp-validation-for="Description"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+                        <div class="col-12">
+
+                            <div class="form-check form-switch">
+
+                                <input asp-for="IsActive"
+                                       class="form-check-input" />
+
+                                <label asp-for="IsActive"
+                                       class="form-check-label">
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <a asp-action="Index"
+                           class="btn btn-light">
+                            Vazgeç
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-dark">
+
+                            <i class="bi bi-plus-lg me-1"></i>
+
+                            Departmanı Kaydet
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

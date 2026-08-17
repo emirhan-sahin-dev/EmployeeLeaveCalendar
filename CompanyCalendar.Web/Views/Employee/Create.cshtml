@@ -1,0 +1,163 @@
+﻿@model CompanyCalendar.Web.ViewModels.Employees.EmployeeFormViewModel
+
+@{
+    ViewData["Title"] = "Yeni Çalışan";
+}
+
+<div class="page-header">
+
+    <h1 class="page-title">
+        Yeni Çalışan
+    </h1>
+
+    <p class="page-description">
+        Tesan İletişim personel listesine yeni çalışan ekleyin.
+    </p>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-8">
+
+        <div class="card">
+
+            <div class="card-header bg-white p-4 border-bottom">
+
+                <h5 class="mb-1 fw-semibold">
+                    Personel Bilgileri
+                </h5>
+
+                <span class="text-muted small">
+                    Çalışanın temel bilgilerini girin.
+                </span>
+
+            </div>
+
+            <div class="card-body p-4">
+
+                <form asp-action="Create"
+                      method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger">
+                    </div>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <label asp-for="FirstName"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="FirstName"
+                                   class="form-control"
+                                   placeholder="Ad" />
+
+                            <span asp-validation-for="FirstName"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label asp-for="LastName"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="LastName"
+                                   class="form-control"
+                                   placeholder="Soyad" />
+
+                            <span asp-validation-for="LastName"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label asp-for="DepartmentId"
+                                   class="form-label">
+                            </label>
+
+                            <select asp-for="DepartmentId"
+                                    asp-items="Model.Departments"
+                                    class="form-select">
+
+                                <option value="">
+                                    Departman seçiniz
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="DepartmentId"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label asp-for="Email"
+                                   class="form-label">
+                            </label>
+
+                            <input asp-for="Email"
+                                   class="form-control"
+                                   placeholder="ornek@tesan.com.tr" />
+
+                            <span asp-validation-for="Email"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+                        <div class="col-12">
+
+                            <div class="form-check form-switch">
+
+                                <input asp-for="IsActive"
+                                       class="form-check-input" />
+
+                                <label asp-for="IsActive"
+                                       class="form-check-label">
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <a asp-action="Index"
+                           class="btn btn-light">
+                            Vazgeç
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-dark">
+
+                            <i class="bi bi-person-plus me-1"></i>
+
+                            Çalışanı Kaydet
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

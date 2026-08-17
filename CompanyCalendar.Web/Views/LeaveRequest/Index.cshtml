@@ -1,0 +1,262 @@
+﻿@model IEnumerable<CompanyCalendar.Domain.Entities.LeaveRequest>
+
+@using CompanyCalendar.Domain.Enums
+
+@{
+    ViewData["Title"] = "İzin Talepleri";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div class="page-header mb-0">
+
+        <h1 class="page-title">
+            İzin Talepleri
+        </h1>
+
+        <p class="page-description">
+            Personel izin taleplerini görüntüleyin ve yönetin.
+        </p>
+
+    </div>
+
+    <a asp-action="Create"
+       class="btn btn-dark">
+
+        <i class="bi bi-plus-lg me-1"></i>
+
+        Yeni İzin Talebi
+
+    </a>
+
+</div>
+
+@if (TempData["SuccessMessage"] is not null)
+{
+    <div class="alert alert-success">
+        <i class="bi bi-check-circle me-2"></i>
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] is not null)
+{
+    <div class="alert alert-danger">
+        <i class="bi bi-exclamation-circle me-2"></i>
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="filter-bar mb-4">
+
+    <a asp-action="Index"
+       class="filter-button @(ViewBag.Status == null ? "active" : "")">
+        Tümü
+    </a>
+
+    <a asp-action="Index"
+       asp-route-status="pending"
+       class="filter-button @(ViewBag.Status == "pending" ? "active" : "")">
+
+        <i class="bi bi-clock"></i>
+        Bekleyen
+
+    </a>
+
+    <a asp-action="Index"
+       asp-route-status="approved"
+       class="filter-button @(ViewBag.Status == "approved" ? "active" : "")">
+
+        <i class="bi bi-check-circle"></i>
+        Onaylanan
+
+    </a>
+
+    <a asp-action="Index"
+       asp-route-status="rejected"
+       class="filter-button @(ViewBag.Status == "rejected" ? "active" : "")">
+
+        <i class="bi bi-x-circle"></i>
+        Reddedilen
+
+    </a>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header bg-white p-3 border-bottom">
+
+        <div class="d-flex align-items-center justify-content-between">
+
+            <div class="fw-semibold">
+                Tüm İzin Talepleri
+            </div>
+
+            <span class="text-muted small">
+                @Model.Count() kayıt
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>PERSONEL</th>
+                    <th>DEPARTMAN</th>
+                    <th>İZİN TÜRÜ</th>
+                    <th>TARİH</th>
+                    <th>DURUM</th>
+                    <th class="text-end">İŞLEM</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+
+                            <div class="employee-cell">
+
+                                <div class="employee-avatar">
+
+                                    @item.Employee.FirstName.Substring(0, 1)
+                                    @item.Employee.LastName.Substring(0, 1)
+
+                                </div>
+
+                                <div>
+
+                                    <div class="fw-semibold">
+                                        @item.Employee.FirstName
+                                        @item.Employee.LastName
+                                    </div>
+
+                                    <small class="text-muted">
+                                        @item.Employee.Email
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            @item.Employee.Department.Name
+                        </td>
+
+                        <td>
+
+                            <span class="leave-type-indicator"
+                                  style="--leave-color:@item.LeaveType.Color">
+
+                                <span class="leave-color-dot"></span>
+
+                                @item.LeaveType.Name
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <div class="fw-medium">
+                                @item.StartDate.ToString("dd.MM.yyyy")
+                            </div>
+
+                            @if (item.StartDate.Date != item.EndDate.Date)
+                            {
+                                <small class="text-muted">
+                                    @item.EndDate.ToString("dd.MM.yyyy") tarihine kadar
+                                </small>
+                            }
+
+                        </td>
+
+                        <td>
+
+                            @if (item.Status == LeaveRequestStatus.Pending)
+                            {
+                                <span class="status-badge status-pending">
+                                    <i class="bi bi-clock"></i>
+                                    Onay Bekliyor
+                                </span>
+                            }
+                            else if (item.Status == LeaveRequestStatus.Approved)
+                            {
+                                <span class="status-badge status-approved">
+                                    <i class="bi bi-check-circle"></i>
+                                    Onaylandı
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-badge status-rejected">
+                                    <i class="bi bi-x-circle"></i>
+                                    Reddedildi
+                                </span>
+                            }
+
+                        </td>
+
+                        <td class="text-end">
+
+                            @if (item.Status == LeaveRequestStatus.Pending)
+                            {
+                                <form asp-action="Approve"
+                                      asp-route-id="@item.Id"
+                                      method="post"
+                                      class="d-inline">
+
+                                    <button type="submit"
+                                            class="btn btn-sm btn-success">
+
+                                        <i class="bi bi-check-lg"></i>
+                                        Onayla
+
+                                    </button>
+
+                                </form>
+
+                                <form asp-action="Reject"
+                                      asp-route-id="@item.Id"
+                                      method="post"
+                                      class="d-inline">
+
+                                    <button type="submit"
+                                            class="btn btn-sm btn-outline-danger">
+
+                                        Redded
+
+                                    </button>
+
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="text-muted small">
+                                    İşlem tamamlandı
+                                </span>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

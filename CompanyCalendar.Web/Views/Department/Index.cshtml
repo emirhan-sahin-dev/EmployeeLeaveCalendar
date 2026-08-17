@@ -1,0 +1,136 @@
+﻿@model IReadOnlyCollection<CompanyCalendar.Application.DTOs.Departments.DepartmentListDto>
+
+@using CompanyCalendar.Domain.Constants
+
+@{
+    ViewData["Title"] = "Departmanlar";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div class="page-header mb-0">
+
+        <h1 class="page-title">
+            Departmanlar
+        </h1>
+
+        <p class="page-description">
+            Tesan İletişim organizasyon departmanlarını yönetin.
+        </p>
+
+    </div>
+
+    <a asp-action="Create"
+       class="btn btn-dark">
+
+        <i class="bi bi-plus-lg me-1"></i>
+
+        Yeni Departman
+
+    </a>
+
+</div>
+
+@if (TempData["SuccessMessage"] is not null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] is not null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="card">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>DEPARTMAN</th>
+                    <th>KOD</th>
+                    <th>AÇIKLAMA</th>
+                    <th>DURUM</th>
+                    <th class="text-end">
+                        İŞLEM
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+
+                            <div class="d-flex align-items-center gap-3">
+
+                                <div class="department-icon">
+                                    <i class="bi bi-diagram-3"></i>
+                                </div>
+
+                                <div class="fw-semibold">
+                                    @item.Name
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            @(item.Code ?? "-")
+                        </td>
+
+                        <td>
+                            @(item.Description ?? "-")
+                        </td>
+
+                        <td>
+
+                            @if (item.IsActive)
+                            {
+                                <span class="status-badge status-approved">
+                                    Aktif
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-badge status-rejected">
+                                    Pasif
+                                </span>
+                            }
+
+                        </td>
+
+                        <td class="text-end">
+
+                            <a asp-action="Edit"
+                               asp-route-id="@item.Id"
+                               class="btn btn-sm btn-outline-secondary">
+
+                                <i class="bi bi-pencil"></i>
+
+                                Düzenle
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

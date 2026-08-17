@@ -1,0 +1,98 @@
+﻿@model CompanyCalendar.Web.ViewModels.Positions.UpdatePositionViewModel
+
+@{
+    ViewData["Title"] = "Pozisyon Düzenle";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-8">
+
+        <h2 class="fw-bold mb-4">
+            Pozisyon Düzenle
+        </h2>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+
+                <form asp-action="Edit"
+                      method="post">
+
+                    <input asp-for="Position.Id"
+                           type="hidden" />
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger">
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Position.DepartmentId"
+                               class="form-label">
+                        </label>
+
+                        <select asp-for="Position.DepartmentId"
+                                asp-items="Model.Departments"
+                                class="form-select">
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Position.Name"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="Position.Name"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Position.Code"
+                               class="form-label">
+                        </label>
+
+                        <input asp-for="Position.Code"
+                               class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Position.Description"
+                               class="form-label">
+                        </label>
+
+                        <textarea asp-for="Position.Description"
+                                  class="form-control"
+                                  rows="4">
+                        </textarea>
+                    </div>
+
+                    <div class="form-check form-switch mb-4">
+                        <input asp-for="Position.IsActive"
+                               class="form-check-input" />
+
+                        <label asp-for="Position.IsActive"
+                               class="form-check-label">
+                        </label>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a asp-action="Index"
+                           class="btn btn-light">
+                            Vazgeç
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Değişiklikleri Kaydet
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
