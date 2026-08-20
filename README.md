@@ -16,7 +16,6 @@ Uygulama ile çalışanların izin kayıtları oluşturulabilir, izin süreçler
 * Departmana göre filtreleme
 * Çalışana göre filtreleme
 * Tarih ve veri kontrolleri
-* Kullanıcı yetkilendirme
 * Kurumsal ve sade kullanıcı arayüzü
 
 ## 🛠️ Kullanılan Teknolojiler
