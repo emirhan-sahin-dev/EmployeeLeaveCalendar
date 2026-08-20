@@ -42,10 +42,6 @@ Sistemde oluşturulan personel izinleri takvim üzerinde görüntülenebilmekted
 
 İzin kayıtlarında tarih kontrolleri uygulanmış ve departman/çalışan bazlı filtreleme ile istenilen personelin izin durumlarının daha kolay takip edilmesi amaçlanmıştır.
 
-## 🔐 Yetkilendirme
-
-Uygulamada kullanıcıların sisteme giriş yapabilmesi ve yetkilerine göre ilgili işlemleri gerçekleştirebilmesi için kimlik doğrulama ve yetkilendirme yapısı kullanılmıştır.
-
 ## 🗄️ Veritabanı
 
 Uygulamanın verileri Microsoft SQL Server üzerinde tutulmakta ve veritabanı işlemleri Entity Framework Core üzerinden gerçekleştirilmektedir.
