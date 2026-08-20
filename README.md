@@ -4,6 +4,32 @@ Employee Leave Calendar, şirket içerisindeki **çalışan, departman ve izin s
 
 Uygulama ile çalışanların izin kayıtları oluşturulabilir, izin süreçleri takip edilebilir ve personel izinleri **takvim görünümü** üzerinden görüntülenebilir.
 
+## 📸 Uygulama Görselleri
+
+### Genel Bakış
+
+![Employee Leave Calendar Dashboard](docs/screenshots/CompanyCalendar1.PNG)
+
+Ana ekran üzerinden aktif çalışan, izinli personel, çalışacak personel ve onay bekleyen izin talepleri gibi temel bilgiler takip edilebilmektedir.
+
+### İzin Takvimi
+
+![İzin Takvimi](docs/screenshots/CompanyCalendar2.PNG)
+
+Onaylanan personel izinleri takvim üzerinde görüntülenebilmektedir. Departman ve izin türüne göre filtreleme yapılabilir, aylık, haftalık ve liste görünümleri kullanılabilir.
+
+### İzin Talepleri
+
+![İzin Talepleri](docs/screenshots/CompanyCalendar3.PNG)
+
+Personel izin talepleri durumlarına göre görüntülenebilir ve bekleyen, onaylanan veya reddedilen kayıtlar filtrelenebilir.
+
+### Departman Yönetimi
+
+![Departman Yönetimi](docs/screenshots/CompanyCalendar4.PNG)
+
+Şirket içerisindeki departmanlar sistem üzerinden listelenebilir, yeni departman eklenebilir ve mevcut departman bilgileri güncellenebilir.
+
 ## ✨ Temel Özellikler
 
 * Departman yönetimi
